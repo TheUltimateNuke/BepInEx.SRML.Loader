@@ -10,7 +10,7 @@ namespace SRML.SR
     public static class LandPlotUpgradeRegistry
     {
         internal static readonly IDRegistry<LandPlot.Upgrade> moddedUpgrades = new IDRegistry<LandPlot.Upgrade>();
-        internal static readonly List<(Type, LandPlot.Id)> moddedUpgraders = new List<(Type, LandPlot.Id)>();
+        internal static readonly List<Tuple<Type, LandPlot.Id>> moddedUpgraders = new List<Tuple<Type, LandPlot.Id>>();
         public static readonly string DemolishKey = MessageUtil.Qualify("ui", "l.demolish_plot");
         public static readonly string ClearCropKey = MessageUtil.Qualify("ui", "b.clear_crop");
 
@@ -71,7 +71,7 @@ namespace SRML.SR
         {
             if (moddedUpgraders.Exists((x) => x.Item1 == typeof(T) && x.Item2 == plot))
                 throw new ArgumentException($"Type \'{typeof(T).FullName}\' is already registered as a plot upgrader for {plot}");
-            moddedUpgraders.Add((typeof(T), plot));
+            moddedUpgraders.Add(new Tuple<Type, LandPlot.Id>(typeof(T), plot));
             if (SRModLoader.CurrentLoadingStep == SRModLoader.LoadingStep.PRELOAD)
                 SRCallbacks.OnGameContextReady += () => AddUpgraderComponents<T>(plot);
             else
@@ -100,7 +100,7 @@ namespace SRML.SR
 
             public string LandPlotName
             {
-                get => landplotName == null ? landplotPediaId.ToString().ToLower() : landplotName;
+                get => landplotName ?? landplotPediaId.ToString().ToLower();
                 set => landplotName = value.ToLower();
             }
 

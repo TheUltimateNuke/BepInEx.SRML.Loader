@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+﻿/*
 using HarmonyLib;
+using System.Reflection;
+
 namespace SRML.Patches
 {
     [HarmonyPatch]
@@ -12,7 +10,7 @@ namespace SRML.Patches
     {
         static MethodBase TargetMethod()
         {
-            return typeof(AutoSaveDirector).GetMethod("PushSavedGame", BindingFlags.NonPublic | BindingFlags.Instance);
+            return typeof(AutoSaveDirector).GetMethod("PushSavedGame", AccessTools.all);
         }
         static void PostFix(AutoSaveDirector __instance)
         {
@@ -20,3 +18,4 @@ namespace SRML.Patches
         }
     }
 }
+*/

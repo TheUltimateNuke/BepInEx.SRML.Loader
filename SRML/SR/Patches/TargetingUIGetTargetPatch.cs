@@ -16,7 +16,7 @@ namespace SRML.SR.Patches
                 return false;
             }
 
-            foreach ((Predicate<Identifiable.Id>, (Func<Identifiable.Id, MessageBundle, MessageBundle, string>, Func<Identifiable.Id, MessageBundle, MessageBundle, string>)) kvp in TargetingRegistry.customTargetingInfo)
+            foreach (Tuple<Predicate<Identifiable.Id>, Tuple<Func<Identifiable.Id, MessageBundle, MessageBundle, string>, Func<Identifiable.Id, MessageBundle, MessageBundle, string>>> kvp in TargetingRegistry.customTargetingInfo)
             {
                 if (kvp.Item1.Invoke(id))
                 {

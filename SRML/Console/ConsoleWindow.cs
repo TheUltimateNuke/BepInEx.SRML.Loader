@@ -168,7 +168,7 @@ namespace SRML.Console
 
 
             // FORCES WINDOW TO CLOSE IF THE GAME IS LOADING
-            if (GameContext.Instance.AutoSaveDirector.IsLoadingGame() && showWindow)
+            if (GameContext.Instance != null && GameContext.Instance.AutoSaveDirector != null && GameContext.Instance.AutoSaveDirector.IsLoadingGame() && showWindow)
             {
                 SetWindowOff();
             }

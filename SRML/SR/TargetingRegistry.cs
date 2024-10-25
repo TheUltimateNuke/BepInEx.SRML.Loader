@@ -5,8 +5,8 @@ namespace SRML.SR
 {
     public static class TargetingRegistry
     {
-        internal static List<(Predicate<Identifiable.Id>, (Func<Identifiable.Id, MessageBundle, MessageBundle, string>, Func<Identifiable.Id, MessageBundle, MessageBundle, string>))> customTargetingInfo = 
-            new List<(Predicate<Identifiable.Id>, (Func<Identifiable.Id, MessageBundle, MessageBundle, string>, Func<Identifiable.Id, MessageBundle, MessageBundle, string>))>();
+        internal static List<Tuple<Predicate<Identifiable.Id>, Tuple<Func<Identifiable.Id, MessageBundle, MessageBundle, string>, Func<Identifiable.Id, MessageBundle, MessageBundle, string>>>> customTargetingInfo = 
+            new List<Tuple<Predicate<Identifiable.Id>, Tuple<Func<Identifiable.Id, MessageBundle, MessageBundle, string>, Func<Identifiable.Id, MessageBundle, MessageBundle, string>>>>();
 
         /// <summary>
         /// Registers a targeter.
@@ -16,7 +16,7 @@ namespace SRML.SR
         /// <param name="desc">A function getting the description of the targeted object, with the first bundle being the UI bundle, and the second being the pedia bundle.</param>
         public static void RegisterTargeter(Predicate<Identifiable.Id> condition, 
             Func<Identifiable.Id, MessageBundle, MessageBundle, string> name = null, Func<Identifiable.Id, MessageBundle, MessageBundle, string> desc = null) => 
-            customTargetingInfo.Add((condition, (name, desc)));
+            customTargetingInfo.Add(new Tuple<Predicate<Identifiable.Id>, Tuple<Func<Identifiable.Id, MessageBundle, MessageBundle, string>, Func<Identifiable.Id, MessageBundle, MessageBundle, string>>>(condition, new Tuple<Func<Identifiable.Id, MessageBundle, MessageBundle, string>, Func<Identifiable.Id, MessageBundle, MessageBundle, string>>(name, desc)));
 
         /// <summary>
         /// Combines two keys' resulting translations.

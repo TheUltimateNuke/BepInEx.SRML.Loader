@@ -1,12 +1,7 @@
-﻿using HarmonyLib;
-using SRML.SR.UI;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using UnityEngine;
-
+﻿/*
 namespace SRML.SR.Patches
 {
+
     [HarmonyPatch(typeof(CorporatePartnerUI), "RebuildUI")]
     internal static class CorporatePartnerRebuildDynamicPatch
     {
@@ -51,3 +46,4 @@ namespace SRML.SR.Patches
         }
     }
 }
+*/

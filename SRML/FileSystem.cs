@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SRML.Utils;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using SRML.Utils;
-using UnityEngine;
 
 namespace SRML
 {
     public static class FileSystem
     {
-        public const string DataPath = "SlimeRancher_Data";
-        public static string ModPath = "SRML/Mods";
-        public static string LibPath = "SRML/Libs";
+        public static readonly string ModPath = Path.Combine(BepInEx.Paths.GameRootPath, "SRML", "Mods");
 
         /// <summary>
         /// Checks if a path exists and creates it if it doesn't

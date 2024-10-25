@@ -18,10 +18,16 @@
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
     <PackageReference Include="HarmonyX" Version="2.13.0" />
     <PackageReference Include="ini-parser" Version="2.5.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" />
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
     
     <Reference Include="..\ref\**\*.dll" />
     
@@ -43,7 +49,7 @@
     <AssemblyTitle>SRML</AssemblyTitle>
     <Description>Mod Loader for the game Slime Rancher</Description>
     <Product>SRML</Product>
-    <Copyright>Copyright ©  2024</Copyright>
+    <Copyright>Copyright ©  2019</Copyright>
     <AssemblyVersion>0.2.1.0</AssemblyVersion>
     <FileVersion>0.2.1.0</FileVersion>
   </PropertyGroup>
