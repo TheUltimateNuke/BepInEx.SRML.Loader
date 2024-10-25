@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GameDir>D:\SteamLibrary\steamapps\common\Slime Rancher</GameDir>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>bin\Debug\SRML.xml</DocumentationFile>
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="SR\UI\srml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="HarmonyX" Version="2.13.0" />
+    <PackageReference Include="ini-parser" Version="2.5.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" />
+    
+    <Reference Include="..\ref\**\*.dll" />
+    
+    <Reference Remove="../ref/System.dll"></Reference>
+    <Reference Remove="../ref/System.*.dll"></Reference>
+    <Reference Remove="../ref/mscorlib.dll"></Reference>
+    <Reference Remove="../ref/XGamingRuntime.dll"></Reference>
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SMRL.Editor\SRML.Editor.csproj" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <AssemblyTitle>SRML</AssemblyTitle>
+    <Description>Mod Loader for the game Slime Rancher</Description>
+    <Product>SRML</Product>
+    <Copyright>Copyright ©  2024</Copyright>
+    <AssemblyVersion>0.2.1.0</AssemblyVersion>
+    <FileVersion>0.2.1.0</FileVersion>
+  </PropertyGroup>
+
+  <Target AfterTargets="PostBuildEvent" Name="PostBuild">
+    <Exec Command="xcopy /Y &quot;$(TargetPath)&quot; &quot;$(GameDir)\BepInEx\plugins&quot;"></Exec>
+  </Target>
+</Project>
